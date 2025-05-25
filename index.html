@@ -546,15 +546,15 @@
         // Check for existing votes in localStorage
         if (localStorage.getItem('budalangiVotes')) {
             votes = JSON.parse(localStorage.getItem('budalangiVotes'));
-            showResults(); // Show existing results on page load
         }
+        // Always show results on page load
+        showResults();
 
         // Check if user has already voted
         let hasVoted = localStorage.getItem('hasVoted') === 'true';
         if (hasVoted) {
             document.getElementById('voteButton').disabled = true;
             document.getElementById('voteButton').textContent = 'You have already voted';
-            showResults();
         }
 
         function selectOption(optionNum) {
