@@ -1,0 +1,16 @@
+{
+    "name": "Budalang'i MP Poll",
+    "short_name": "MP Poll",
+    "description": "Budalang'i Constituency 2027 MP Preference Poll",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#F5F5F5",
+    "theme_color": "#006837",
+    "icons": [
+        {
+            "src": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAA40lEQVR4Ae2XIQ7CQBBF/0UgUTgEAoPE4xAIDAbDCXAIDIIDYDAIBAKBxGERCAQCwwkQCAQGiUAgMYhv2E7TbpNuQ8PWvGQy3c7M/252Z7tNU8QYRynXGUpVQIprkZ6Nc1yU5xc0q4AUxbQvzrHDQPP0QcKtAjJci0zxwELzFOZEVQFHXIs84YNxrDFP4RxXBRxwLZJghhnGes4bY1VAH9ciB0wxwk3PecH4rwLmuBaJsUQfG807lXNcFdDCtUiEHnpY6znxL+e4KqCOa5ESJYooIVKeIkXnuCqg8uf/B18BBN49HJ+aqwAAAABJRU5ErkJggg==",
+            "sizes": "192x192",
+            "type": "image/png"
+        }
+    ]
+} 

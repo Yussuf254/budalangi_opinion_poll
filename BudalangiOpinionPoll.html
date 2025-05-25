@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Budalang'i Constituency 2027 MP Preference Poll - Voice your opinion on the next MP">
+    <meta name="theme-color" content="#006837">
+    <meta property="og:title" content="Budalang'i Constituency 2027 MP Poll">
+    <meta property="og:description" content="Participate in the Budalang'i Constituency MP preference poll for 2027">
+    <meta property="og:type" content="website">
+    <link rel="manifest" href="manifest.json">
+    <link rel="icon" type="image/png" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAA40lEQVR4Ae2XIQ7CQBBF/0UgUTgEAoPE4xAIDAbDCXAIDIIDYDAIBAKBxGERCAQCwwkQCAQGiUAgMYhv2E7TbpNuQ8PWvGQy3c7M/252Z7tNU8QYRynXGUpVQIprkZ6Nc1yU5xc0q4AUxbQvzrHDQPP0QcKtAjJci0zxwELzFOZEVQFHXIs84YNxrDFP4RxXBRxwLZJghhnGes4bY1VAH9ciB0wxwk3PecH4rwLmuBaJsUQfG807lXNcFdDCtUiEHnpY6znxL+e4KqCOa5ESJYooIVKeIkXnuCqg8uf/B18BBN49HJ+aqwAAAABJRU5ErkJggg==">
+    <title>Budalang'i Constituency 2027 MP Preference Poll</title>
+    <style>
+        :root {
+            --primary-color: #006837; /* Kenya green */
+            --secondary-color: #BB1919; /* Kenya red */
+            --accent-color: #000000; /* Kenya black */
+            --light-bg: #F5F5F5;
+            --card-bg: #FFFFFF;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--light-bg);
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .designer-credit {
+            text-align: center;
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 10px;
+            font-style: italic;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            color: white;
+            padding: 25px 0;
+            text-align: center;
+            border-radius: 8px 8px 0 0;
+            margin-bottom: 0;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
+        .header h1 {
+            margin: 0;
+            font-size: 28px;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+        }
+        
+        .header h2 {
+            margin: 10px 0 0;
+            font-size: 20px;
+            font-weight: normal;
+            opacity: 0.9;
+        }
+        
+        .poll-container {
+            background-color: var(--card-bg);
+            padding: 30px;
+            border-radius: 0 0 8px 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .poll-container::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 8px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--primary-color), var(--secondary-color));
+        }
+        
+        .poll-question {
+            font-size: 22px;
+            font-weight: 600;
+            margin-bottom: 25px;
+            color: var(--primary-color);
+            text-align: center;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #EEE;
+        }
+        
+        .poll-options {
+            margin-bottom: 20px;
+        }
+        
+        .poll-option {
+            margin: 15px 0;
+            padding: 15px;
+            background-color: #F9F9F9;
+            border-left: 4px solid var(--primary-color);
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            position: relative;
+        }
+        
+        .poll-option:hover {
+            background-color: #F0F7F0;
+            transform: translateX(5px);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        
+        .poll-option input {
+            margin-right: 15px;
+            transform: scale(1.3);
+        }
+        
+        .party-info {
+            display: flex;
+            align-items: center;
+            flex-grow: 1;
+        }
+        
+        .party-logo {
+            width: 40px;
+            height: 40px;
+            margin-right: 15px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid #EEE;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .candidate-name {
+            font-weight: 600;
+            margin-bottom: 3px;
+        }
+        
+        .party-name {
+            font-size: 14px;
+            color: #666;
+        }
+        
+        .candidate-title {
+            font-size: 13px;
+            color: #888;
+            font-style: italic;
+        }
+        
+        .poll-button {
+            background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+            color: white;
+            border: none;
+            padding: 14px 25px;
+            font-size: 18px;
+            font-weight: 600;
+            margin: 25px auto;
+            cursor: pointer;
+            border-radius: 50px;
+            display: block;
+            width: 80%;
+            transition: all 0.3s;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .poll-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+            opacity: 0.9;
+        }
+        
+        .poll-button:disabled {
+            background: #CCC;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+        
+        .poll-results {
+            margin-top: 30px;
+            display: none;
+            background-color: #F9F9F9;
+            padding: 25px;
+            border-radius: 8px;
+            border: 1px solid #EEE;
+        }
+        
+        .results-header {
+            text-align: center;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            font-size: 22px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .results-header i {
+            margin-right: 10px;
+            font-size: 24px;
+        }
+        
+        .result-item {
+            margin-bottom: 15px;
+        }
+        
+        .result-label {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            font-size: 15px;
+        }
+        
+        .result-name {
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+        }
+        
+        .result-value {
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+        
+        .result-bar-container {
+            height: 20px;
+            background-color: #E0E0E0;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-bottom: 15px;
+        }
+        
+        .result-bar {
+            height: 100%;
+            background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+            border-radius: 10px;
+            transition: width 1s ease-out;
+        }
+        
+        .total-votes {
+            text-align: center;
+            margin-top: 25px;
+            font-weight: bold;
+            font-size: 18px;
+            color: var(--accent-color);
+            padding-top: 15px;
+            border-top: 1px dashed #CCC;
+        }
+        
+        .disclaimer {
+            font-size: 13px;
+            color: #666;
+            margin-top: 30px;
+            text-align: center;
+            line-height: 1.5;
+            padding: 15px;
+            background-color: #FFF9F9;
+            border-radius: 8px;
+            border-left: 4px solid var(--secondary-color);
+        }
+        
+        .timestamp {
+            text-align: center;
+            font-size: 12px;
+            color: #999;
+            margin-top: 15px;
+        }
+        
+        /* Offline State */
+        .offline-banner {
+            display: none;
+            background-color: #f44336;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+        }
+
+        body.offline .offline-banner {
+            display: block;
+        }
+
+        /* Loading States */
+        .loading {
+            position: relative;
+            opacity: 0.7;
+            pointer-events: none;
+        }
+
+        .loading::after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 20px;
+            height: 20px;
+            margin: -10px 0 0 -10px;
+            border: 3px solid rgba(0,0,0,0.1);
+            border-top-color: var(--primary-color);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* Improved Mobile Responsiveness */
+        @media (max-width: 600px) {
+            .container {
+                padding: 10px;
+            }
+
+            .header h1 {
+                font-size: 24px;
+            }
+
+            .header h2 {
+                font-size: 18px;
+            }
+
+            .poll-question {
+                font-size: 20px;
+            }
+
+            .poll-option {
+                padding: 12px;
+            }
+
+            .party-logo {
+                width: 30px;
+                height: 30px;
+            }
+
+            .candidate-name {
+                font-size: 14px;
+            }
+
+            .party-name {
+                font-size: 12px;
+            }
+
+            .poll-button {
+                width: 100%;
+                padding: 12px 20px;
+                font-size: 16px;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="offline-banner">
+        You are currently offline. Your votes will be saved and synced when you're back online.
+    </div>
+    <div class="container">
+        <div class="designer-credit">Designed by Hamisi Yusuf</div>
+        
+        <div class="header">
+            <h1>BUDALANG'I CONSTITUENCY</h1>
+            <h2>2027 Member of Parliament Preference Poll</h2>
+        </div>
+        
+        <div class="poll-container">
+            <div class="poll-question">
+                <i class="fas fa-vote-yea"></i> If elections were held today, who would you vote for as MP?
+            </div>
+            
+            <div class="poll-options">
+                <div class="poll-option" onclick="selectOption(1)">
+                    <input type="radio" name="pollOption" id="option1">
+                    <div class="party-info">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Orange_Democratic_Movement_-_Logo.svg/1200px-Orange_Democratic_Movement_-_Logo.svg.png" class="party-logo" alt="ODM">
+                        <div>
+                            <div class="candidate-name">Hon. Raphael Wanjala</div>
+                            <div class="party-name">Orange Democratic Movement (ODM)</div>
+                            <div class="candidate-title">Current MP</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="poll-option" onclick="selectOption(2)">
+                    <input type="radio" name="pollOption" id="option2">
+                    <div class="party-info">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/United_Democratic_Alliance_Logo.svg/1200px-United_Democratic_Alliance_Logo.svg.png" class="party-logo" alt="UDA">
+                        <div>
+                            <div class="candidate-name">Casper Ajuma</div>
+                            <div class="party-name">United Democratic Alliance (UDA)</div>
+                            <div class="candidate-title">POLITICIAN</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="poll-option" onclick="selectOption(3)">
+                    <input type="radio" name="pollOption" id="option3">
+                    <div class="party-info">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Wiper_Democratic_Movement_-_Kenya_logo.svg/1200px-Wiper_Democratic_Movement_-_Kenya_logo.svg.png" class="party-logo" alt="Wiper">
+                        <div>
+                            <div class="candidate-name">James Mabere Magio</div>
+                            <div class="party-name">N/A</div>
+                            <div class="candidate-title">Business Person</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="poll-option" onclick="selectOption(4)">
+                    <input type="radio" name="pollOption" id="option4">
+                    <div class="party-info">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/Amani_National_Congress_logo.svg/1200px-Amani_National_Congress_logo.svg.png" class="party-logo" alt="ANC">
+                        <div>
+                            <div class="candidate-name">Peter Bwire Osogo</div>
+                            <div class="party-name">N/A</div>
+                            <div class="candidate-title">POLITICIAN</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="poll-option" onclick="selectOption(5)">
+                    <input type="radio" name="pollOption" id="option5">
+                    <div class="party-info">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Independent_politician.svg/1200px-Independent_politician.svg.png" class="party-logo" alt="Independent">
+                        <div>
+                            <div class="candidate-name">Sammy Ogama Imbako</div>
+                            <div class="party-name">N/A</div>
+                            <div class="candidate-title">POLITICIAN</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <button class="poll-button" id="voteButton" onclick="submitVote()">
+                <i class="fas fa-paper-plane"></i> SUBMIT YOUR VOTE
+            </button>
+            
+            <div class="poll-results" id="pollResults">
+                <div class="results-header">
+                    <i class="fas fa-chart-bar"></i> CURRENT POLL RESULTS
+                </div>
+                
+                <div class="result-item">
+                    <div class="result-label">
+                        <span class="result-name">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Orange_Democratic_Movement_-_Logo.svg/1200px-Orange_Democratic_Movement_-_Logo.svg.png" style="width:20px;height:20px;border-radius:50%;margin-right:8px;" alt="ODM">
+                            Hon. Raphael Wanjala
+                        </span>
+                        <span class="result-value" id="result1">0% (0 votes)</span>
+                    </div>
+                    <div class="result-bar-container">
+                        <div class="result-bar" id="bar1" style="width: 0%"></div>
+                    </div>
+                </div>
+                
+                <div class="result-item">
+                    <div class="result-label">
+                        <span class="result-name">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/United_Democratic_Alliance_Logo.svg/1200px-United_Democratic_Alliance_Logo.svg.png" style="width:20px;height:20px;border-radius:50%;margin-right:8px;" alt="UDA">
+                           Hon Peter Bwire Osogo
+                        </span>
+                        <span class="result-value" id="result2">0% (0 votes)</span>
+                    </div>
+                    <div class="result-bar-container">
+                        <div class="result-bar" id="bar2" style="width: 0%"></div>
+                    </div>
+                </div>
+                
+                <div class="result-item">
+                    <div class="result-label">
+                        <span class="result-name">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Wiper_Democratic_Movement_-_Kenya_logo.svg/1200px-Wiper_Democratic_Movement_-_Kenya_logo.svg.png" style="width:20px;height:20px;border-radius:50%;margin-right:8px;" alt="Wiper">
+                            Hon James Mabere Magio
+                        </span>
+                        <span class="result-value" id="result3">0% (0 votes)</span>
+                    </div>
+                    <div class="result-bar-container">
+                        <div class="result-bar" id="bar3" style="width: 0%"></div>
+                    </div>
+                </div>
+                
+                <div class="result-item">
+                    <div class="result-label">
+                        <span class="result-name">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/Amani_National_Congress_logo.svg/1200px-Amani_National_Congress_logo.svg.png" style="width:20px;height:20px;border-radius:50%;margin-right:8px;" alt="ANC">
+                           Hon Casper Ajuma
+                        </span>
+                        <span class="result-value" id="result4">0% (0 votes)</span>
+                    </div>
+                    <div class="result-bar-container">
+                        <div class="result-bar" id="bar4" style="width: 0%"></div>
+                    </div>
+                </div>
+                
+                <div class="result-item">
+                    <div class="result-label">
+                        <span class="result-name">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Independent_politician.svg/1200px-Independent_politician.svg.png" style="width:20px;height:20px;border-radius:50%;margin-right:8px;" alt="IND">
+                            Hon Sammy Ogama Imbako
+                        </span>
+                        <span class="result-value" id="result5">0% (0 votes)</span>
+                    </div>
+                    <div class="result-bar-container">
+                        <div class="result-bar" id="bar5" style="width: 0%"></div>
+                    </div>
+                </div>
+                
+                <div class="total-votes">
+                    <i class="fas fa-users"></i> TOTAL VOTES CAST: <span id="totalVotes">0</span>
+                </div>
+            </div>
+            
+            <div class="disclaimer">
+                <p><strong>Disclaimer:</strong> This is an unofficial, non-scientific poll for informational purposes only. Results do not represent actual voting intentions and should not be used to predict election outcomes. This poll is not affiliated with any political party or the Independent Electoral and Boundaries Commission (IEBC).</p>
+                <p>Data is stored locally in your browser and will reset if you clear your cache. Each device can only vote once.</p>
+            </div>
+            
+            <div class="timestamp" id="timestamp"></div>
+        </div>
+    </div>
+
+    <script>
+        // Initialize voting data
+        let votes = {
+            option1: 0,
+            option2: 0,
+            option3: 0,
+            option4: 0,
+            option5: 0
+        };
+
+        // Check for existing votes in localStorage
+        if (localStorage.getItem('budalangiVotes')) {
+            votes = JSON.parse(localStorage.getItem('budalangiVotes'));
+            showResults(); // Show existing results on page load
+        }
+
+        // Check if user has already voted
+        let hasVoted = localStorage.getItem('hasVoted') === 'true';
+        if (hasVoted) {
+            document.getElementById('voteButton').disabled = true;
+            document.getElementById('voteButton').textContent = 'You have already voted';
+            showResults();
+        }
+
+        function selectOption(optionNum) {
+            if (hasVoted) return;
+            
+            // Uncheck all options
+            for (let i = 1; i <= 5; i++) {
+                document.getElementById('option' + i).checked = false;
+            }
+            
+            // Check selected option
+            document.getElementById('option' + optionNum).checked = true;
+        }
+
+        function submitVote() {
+            if (hasVoted) {
+                alert('You have already voted!');
+                return;
+            }
+
+            // Find selected option
+            let selectedOption = null;
+            for (let i = 1; i <= 5; i++) {
+                if (document.getElementById('option' + i).checked) {
+                    selectedOption = 'option' + i;
+                    break;
+                }
+            }
+
+            if (!selectedOption) {
+                alert('Please select a candidate before voting!');
+                return;
+            }
+
+            // Record vote
+            votes[selectedOption]++;
+            
+            // Save to localStorage
+            localStorage.setItem('budalangiVotes', JSON.stringify(votes));
+            localStorage.setItem('hasVoted', 'true');
+            
+            // Update UI
+            hasVoted = true;
+            document.getElementById('voteButton').disabled = true;
+            document.getElementById('voteButton').textContent = 'Thank you for voting!';
+            
+            // Show results
+            showResults();
+        }
+
+        function showResults() {
+            // Calculate total votes
+            let totalVotes = Object.values(votes).reduce((a, b) => a + b, 0);
+            
+            // Update each candidate's results
+            for (let i = 1; i <= 5; i++) {
+                let percentage = totalVotes > 0 ? (votes['option' + i] / totalVotes * 100).toFixed(1) : 0;
+                let voteCount = votes['option' + i];
+                
+                // Update percentage and vote count
+                document.getElementById('result' + i).textContent = percentage + '% (' + voteCount + ' votes)';
+                
+                // Update progress bar
+                document.getElementById('bar' + i).style.width = percentage + '%';
+            }
+            
+            // Show results section
+            document.getElementById('pollResults').style.display = 'block';
+            
+            // Update total votes
+            document.getElementById('totalVotes').textContent = totalVotes;
+            
+            // Update timestamp
+            document.getElementById('timestamp').textContent = 'Last updated: ' + new Date().toLocaleString();
+        }
+
+        // Service Worker Registration
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/sw.js')
+                    .then(registration => {
+                        console.log('ServiceWorker registration successful');
+                    })
+                    .catch(err => {
+                        console.log('ServiceWorker registration failed: ', err);
+                    });
+            });
+        }
+
+        // Offline detection
+        window.addEventListener('online', function() {
+            document.body.classList.remove('offline');
+        });
+
+        window.addEventListener('offline', function() {
+            document.body.classList.add('offline');
+        });
+    </script>
+</body>
+</html>
