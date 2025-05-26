@@ -472,8 +472,6 @@
 
     <script>
         // Initialize Firebase
-        // TODO: Replace this configuration with your actual Firebase configuration
-        // Get this from your Firebase Console -> Project Settings -> Your Apps -> SDK setup and configuration
         const firebaseConfig = {
             apiKey: "YOUR_API_KEY",
             authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
@@ -498,7 +496,10 @@
             option5: 0
         };
 
-        // Listen for vote changes in real-time
+        // Check if user has already voted
+        let hasVoted = localStorage.getItem('budalangi2027HasVoted') === 'true';
+
+        // Load existing votes and show results
         votesRef.on('value', (snapshot) => {
             if (snapshot.exists()) {
                 votes = snapshot.val();
@@ -506,28 +507,33 @@
             }
         });
 
-        // Check if user has already voted
-        const hasVoted = localStorage.getItem('budalangi2027HasVoted') === 'true';
+        // If user has already voted, disable the voting interface
         if (hasVoted) {
             disableVoting();
         }
 
         function selectOption(optionNum) {
-            if (hasVoted) return;
+            if (hasVoted) {
+                alert('You have already voted in this poll.');
+                return;
+            }
             
+            // Uncheck all options
             for (let i = 1; i <= 5; i++) {
                 document.getElementById('option' + i).checked = false;
             }
             
+            // Check selected option
             document.getElementById('option' + optionNum).checked = true;
         }
 
         function submitVote() {
             if (hasVoted) {
-                alert('You have already voted in this poll. Thank you for participating!');
+                alert('You have already voted in this poll.');
                 return;
             }
 
+            // Find selected option
             let selectedOption = null;
             for (let i = 1; i <= 5; i++) {
                 if (document.getElementById('option' + i).checked) {
@@ -537,19 +543,38 @@
             }
 
             if (!selectedOption) {
-                alert('Please select a candidate before submitting your vote!');
+                alert('Please select a candidate before voting!');
                 return;
             }
 
-            // Update vote in Firebase
-            votes[selectedOption]++;
-            votesRef.set(votes).then(() => {
+            // Disable the submit button to prevent double submission
+            document.getElementById('voteButton').disabled = true;
+
+            // Update vote count
+            votesRef.transaction((currentVotes) => {
+                if (currentVotes) {
+                    currentVotes[selectedOption] = (currentVotes[selectedOption] || 0) + 1;
+                    return currentVotes;
+                }
+                // If no votes exist yet, initialize with current vote
+                const newVotes = { ...votes };
+                newVotes[selectedOption] = 1;
+                return newVotes;
+            }).then(() => {
+                // Mark user as voted
+                hasVoted = true;
                 localStorage.setItem('budalangi2027HasVoted', 'true');
+                
+                // Disable voting interface
                 disableVoting();
-                alert('Thank you for participating in the Budalang\'i 2027 MP preference poll! Your voice matters.');
+                
+                // Show success message
+                alert('Thank you for voting! Your vote has been recorded.');
             }).catch((error) => {
-                alert('Error submitting vote. Please try again.');
-                console.error('Error:', error);
+                console.error('Error submitting vote:', error);
+                alert('There was an error submitting your vote. Please try again.');
+                // Re-enable the submit button if there was an error
+                document.getElementById('voteButton').disabled = false;
             });
         }
 
@@ -559,25 +584,29 @@
             // Update each candidate's results
             for (let i = 1; i <= 5; i++) {
                 const percentage = total > 0 ? ((votes['option' + i] / total) * 100).toFixed(1) : 0;
-                const voteCount = votes['option' + i];
+                const voteCount = votes['option' + i] || 0;
                 
                 document.getElementById('result' + i).textContent = `${percentage}% (${voteCount} votes)`;
                 document.getElementById('bar' + i).style.width = `${percentage}%`;
             }
             
+            // Update total votes and timestamp
             document.getElementById('totalVotes').textContent = total;
             document.getElementById('timestamp').textContent = `Last updated: ${new Date().toLocaleString()}`;
         }
 
         function disableVoting() {
+            // Disable radio buttons
             for (let i = 1; i <= 5; i++) {
                 document.getElementById('option' + i).disabled = true;
             }
             
+            // Update button state
             const voteButton = document.getElementById('voteButton');
             voteButton.disabled = true;
             voteButton.innerHTML = '<i class="fas fa-check"></i> THANK YOU FOR VOTING';
             
+            // Update option styles
             const options = document.querySelectorAll('.poll-option');
             options.forEach(option => {
                 option.style.cursor = 'default';

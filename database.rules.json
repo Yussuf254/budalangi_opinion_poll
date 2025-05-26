@@ -3,12 +3,13 @@
     ".read": true,
     "votes": {
       ".write": true,
-      ".validate": "newData.hasChildren(['option1', 'option2', 'option3', 'option4', 'option5']) &&
-                   newData.child('option1').isNumber() &&
-                   newData.child('option2').isNumber() &&
-                   newData.child('option3').isNumber() &&
-                   newData.child('option4').isNumber() &&
-                   newData.child('option5').isNumber()"
+      ".validate": "newData.hasChildren(['option1', 'option2', 'option3', 'option4', 'option5'])"
+    },
+    "voters": {
+      "$userId": {
+        ".write": "!data.exists()",
+        ".validate": "newData.hasChildren(['timestamp', 'option']) && newData.child('timestamp').isNumber() && newData.child('option').isString() && newData.child('option').val().matches(/^option[1-5]$/)"
+      }
     }
   }
 } 
