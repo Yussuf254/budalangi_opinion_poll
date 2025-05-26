@@ -471,21 +471,35 @@
     </div>
 
     <script>
-        // Initialize Firebase
+        // Initialize Firebase with environment variables
         const firebaseConfig = {
-            apiKey: "YOUR_API_KEY",
-            authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
-            databaseURL: "https://YOUR_PROJECT_ID-default-rtdb.firebaseio.com",
-            projectId: "YOUR_PROJECT_ID",
-            storageBucket: "YOUR_PROJECT_ID.appspot.com",
-            messagingSenderId: "YOUR_SENDER_ID",
-            appId: "YOUR_APP_ID"
+            apiKey: "AIzaSyBXH7JgXIWzi7j3iQHV3hs4iDfn7bEG9Mo",
+            authDomain: "budalangi-poll.firebaseapp.com",
+            databaseURL: "https://budalangi-poll-default-rtdb.firebaseio.com",
+            projectId: "budalangi-poll",
+            storageBucket: "budalangi-poll.appspot.com",
+            messagingSenderId: "339543889864",
+            appId: "1:339543889864:web:4c4c69f50d7b5e9a9d94a4"
         };
 
         // Initialize Firebase
         firebase.initializeApp(firebaseConfig);
         const database = firebase.database();
         const votesRef = database.ref('votes');
+
+        // Initialize votes if they don't exist
+        votesRef.once('value').then((snapshot) => {
+            if (!snapshot.exists()) {
+                // Set initial vote counts
+                votesRef.set({
+                    option1: 0,
+                    option2: 0,
+                    option3: 0,
+                    option4: 0,
+                    option5: 0
+                });
+            }
+        });
 
         // Initialize voting data
         let votes = {
