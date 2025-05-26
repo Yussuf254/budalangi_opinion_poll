@@ -3,13 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Budalang'i Constituency 2027 MP Preference Poll - Voice your opinion on the next MP">
-    <meta name="theme-color" content="#006837">
-    <meta property="og:title" content="Budalang'i Constituency 2027 MP Poll">
-    <meta property="og:description" content="Participate in the Budalang'i Constituency MP preference poll for 2027">
-    <meta property="og:type" content="website">
-    <link rel="manifest" href="manifest.json">
-    <link rel="icon" type="image/png" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAA40lEQVR4Ae2XIQ7CQBBF/0UgUTgEAoPE4xAIDAbDCXAIDIIDYDAIBAKBxGERCAQCwwkQCAQGiUAgMYhv2E7TbpNuQ8PWvGQy3c7M/252Z7tNU8QYRynXGUpVQIprkZ6Nc1yU5xc0q4AUxbQvzrHDQPP0QcKtAjJci0zxwELzFOZEVQFHXIs84YNxrDFP4RxXBRxwLZJghhnGes4bY1VAH9ciB0wxwk3PecH4rwLmuBaJsUQfG807lXNcFdDCtUiEHnpY6znxL+e4KqCOa5ESJYooIVKeIkXnuCqg8uf/B18BBN49HJ+aqwAAAABJRU5ErkJggg==">
     <title>Budalang'i Constituency 2027 MP Preference Poll</title>
     <style>
         :root {
@@ -188,7 +181,7 @@
         
         .poll-results {
             margin-top: 30px;
-            display: block;
+            display: none;
             background-color: #F9F9F9;
             padding: 25px;
             border-radius: 8px;
@@ -277,89 +270,34 @@
             margin-top: 15px;
         }
         
-        /* Offline State */
-        .offline-banner {
-            display: none;
-            background-color: #f44336;
-            color: white;
-            text-align: center;
-            padding: 10px;
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 1000;
-        }
-
-        body.offline .offline-banner {
-            display: block;
-        }
-
-        /* Loading States */
-        .loading {
-            position: relative;
-            opacity: 0.7;
-            pointer-events: none;
-        }
-
-        .loading::after {
-            content: "";
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 20px;
-            height: 20px;
-            margin: -10px 0 0 -10px;
-            border: 3px solid rgba(0,0,0,0.1);
-            border-top-color: var(--primary-color);
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-        }
-
-        @keyframes spin {
-            to {
-                transform: rotate(360deg);
-            }
-        }
-
-        /* Improved Mobile Responsiveness */
         @media (max-width: 600px) {
             .container {
                 padding: 10px;
             }
-
+            
             .header h1 {
-                font-size: 24px;
+                font-size: 22px;
             }
-
+            
             .header h2 {
+                font-size: 16px;
+            }
+            
+            .poll-container {
+                padding: 20px 15px;
+            }
+            
+            .poll-question {
                 font-size: 18px;
             }
-
-            .poll-question {
-                font-size: 20px;
-            }
-
+            
             .poll-option {
                 padding: 12px;
             }
-
-            .party-logo {
-                width: 30px;
-                height: 30px;
-            }
-
-            .candidate-name {
-                font-size: 14px;
-            }
-
-            .party-name {
-                font-size: 12px;
-            }
-
+            
             .poll-button {
                 width: 100%;
-                padding: 12px 20px;
+                padding: 12px;
                 font-size: 16px;
             }
         }
@@ -367,9 +305,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
-    <div class="offline-banner">
-        You are currently offline. Your votes will be saved and synced when you're back online.
-    </div>
     <div class="container">
         <div class="designer-credit">Designed by Hamisi Yusuf</div>
         
@@ -391,7 +326,7 @@
                         <div>
                             <div class="candidate-name">Hon. Raphael Wanjala</div>
                             <div class="party-name">Orange Democratic Movement (ODM)</div>
-                            <div class="candidate-title">Current MP</div>
+                            <div class="candidate-title">Current MP • Development Focus</div>
                         </div>
                     </div>
                 </div>
@@ -401,9 +336,9 @@
                     <div class="party-info">
                         <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/United_Democratic_Alliance_Logo.svg/1200px-United_Democratic_Alliance_Logo.svg.png" class="party-logo" alt="UDA">
                         <div>
-                            <div class="candidate-name">Casper Ajuma</div>
+                            <div class="candidate-name">Dr. Sarah Wekesa</div>
                             <div class="party-name">United Democratic Alliance (UDA)</div>
-                            <div class="candidate-title">POLITICIAN</div>
+                            <div class="candidate-title">Business Leader • Education Advocate</div>
                         </div>
                     </div>
                 </div>
@@ -413,9 +348,9 @@
                     <div class="party-info">
                         <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Wiper_Democratic_Movement_-_Kenya_logo.svg/1200px-Wiper_Democratic_Movement_-_Kenya_logo.svg.png" class="party-logo" alt="Wiper">
                         <div>
-                            <div class="candidate-name">James Mabere Magio</div>
-                            <div class="party-name">N/A</div>
-                            <div class="candidate-title">Business Person</div>
+                            <div class="candidate-name">Prof. James Okoth</div>
+                            <div class="party-name">Wiper Democratic Movement</div>
+                            <div class="candidate-title">University Professor • Policy Expert</div>
                         </div>
                     </div>
                 </div>
@@ -425,9 +360,9 @@
                     <div class="party-info">
                         <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/Amani_National_Congress_logo.svg/1200px-Amani_National_Congress_logo.svg.png" class="party-logo" alt="ANC">
                         <div>
-                            <div class="candidate-name">Peter Bwire Osogo</div>
-                            <div class="party-name">N/A</div>
-                            <div class="candidate-title">POLITICIAN</div>
+                            <div class="candidate-name">Mr. David Musungu</div>
+                            <div class="party-name">Amani National Congress (ANC)</div>
+                            <div class="candidate-title">Youth Leader • Anti-Corruption</div>
                         </div>
                     </div>
                 </div>
@@ -437,9 +372,9 @@
                     <div class="party-info">
                         <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Independent_politician.svg/1200px-Independent_politician.svg.png" class="party-logo" alt="Independent">
                         <div>
-                            <div class="candidate-name">Sammy Ogama Imbako</div>
-                            <div class="party-name">N/A</div>
-                            <div class="candidate-title">POLITICIAN</div>
+                            <div class="candidate-name">Ms. Grace Atieno</div>
+                            <div class="party-name">Independent Candidate</div>
+                            <div class="candidate-title">Community Activist • Women's Rights</div>
                         </div>
                     </div>
                 </div>
@@ -471,7 +406,7 @@
                     <div class="result-label">
                         <span class="result-name">
                             <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/United_Democratic_Alliance_Logo.svg/1200px-United_Democratic_Alliance_Logo.svg.png" style="width:20px;height:20px;border-radius:50%;margin-right:8px;" alt="UDA">
-                           Hon Peter Bwire Osogo
+                            Dr. Sarah Wekesa
                         </span>
                         <span class="result-value" id="result2">0% (0 votes)</span>
                     </div>
@@ -484,7 +419,7 @@
                     <div class="result-label">
                         <span class="result-name">
                             <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Wiper_Democratic_Movement_-_Kenya_logo.svg/1200px-Wiper_Democratic_Movement_-_Kenya_logo.svg.png" style="width:20px;height:20px;border-radius:50%;margin-right:8px;" alt="Wiper">
-                            Hon James Mabere Magio
+                            Prof. James Okoth
                         </span>
                         <span class="result-value" id="result3">0% (0 votes)</span>
                     </div>
@@ -497,7 +432,7 @@
                     <div class="result-label">
                         <span class="result-name">
                             <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/Amani_National_Congress_logo.svg/1200px-Amani_National_Congress_logo.svg.png" style="width:20px;height:20px;border-radius:50%;margin-right:8px;" alt="ANC">
-                           Hon Casper Ajuma
+                            Mr. David Musungu
                         </span>
                         <span class="result-value" id="result4">0% (0 votes)</span>
                     </div>
@@ -510,7 +445,7 @@
                     <div class="result-label">
                         <span class="result-name">
                             <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Independent_politician.svg/1200px-Independent_politician.svg.png" style="width:20px;height:20px;border-radius:50%;margin-right:8px;" alt="IND">
-                            Hon Sammy Ogama Imbako
+                            Ms. Grace Atieno
                         </span>
                         <span class="result-value" id="result5">0% (0 votes)</span>
                     </div>
@@ -534,147 +469,132 @@
     </div>
 
     <script>
-        // Initialize voting data
+        // Voting data for Budalang'i candidates
         let votes = {
-            option1: 0,
-            option2: 0,
-            option3: 0,
-            option4: 0,
-            option5: 0
+            option1: 0,  // ODM
+            option2: 0,  // UDA
+            option3: 0,  // Wiper
+            option4: 0,  // ANC
+            option5: 0   // Independent
         };
-
-        let hasVoted = false; // Initialize hasVoted variable
-
-        // Function to initialize the poll
-        function initializePoll() {
-            // Load existing votes from localStorage
-            const savedVotes = localStorage.getItem('budalangiVotes');
-            if (savedVotes) {
-                try {
-                    votes = JSON.parse(savedVotes);
-                } catch (e) {
-                    console.error('Error loading saved votes:', e);
-                    localStorage.removeItem('budalangiVotes');
-                }
-            }
-
-            // Show results immediately
+        
+        // Check if user has already voted
+        const hasVoted = localStorage.getItem('budalangi2027HasVoted');
+        
+        // Check if there's saved data in localStorage
+        if(localStorage.getItem('budalangiPoll2027')) {
+            votes = JSON.parse(localStorage.getItem('budalangiPoll2027'));
             showResults();
-
-            // Check if user has already voted
-            hasVoted = localStorage.getItem('hasVoted') === 'true';
-            updateButtonState();
-        }
-
-        // Function to update button state
-        function updateButtonState() {
-            const voteButton = document.getElementById('voteButton');
-            if (hasVoted) {
-                voteButton.disabled = true;
-                voteButton.textContent = 'You have already voted';
-            } else {
-                voteButton.disabled = false;
-                voteButton.innerHTML = '<i class="fas fa-paper-plane"></i> SUBMIT YOUR VOTE';
+            
+            if(hasVoted) {
+                disableVoting();
             }
         }
-
-        // Call initialize function when DOM is loaded
-        document.addEventListener('DOMContentLoaded', initializePoll);
-
+        
+        // Set current timestamp
+        document.getElementById('timestamp').textContent = `Last updated: ${new Date().toLocaleString()}`;
+        
         function selectOption(optionNum) {
-            if (hasVoted) return;
+            if(hasVoted) return;
             
             // Uncheck all options
-            for (let i = 1; i <= 5; i++) {
+            for(let i = 1; i <= 5; i++) {
                 document.getElementById('option' + i).checked = false;
             }
             
-            // Check selected option
+            // Check the selected option
             document.getElementById('option' + optionNum).checked = true;
         }
-
+        
         function submitVote() {
-            if (hasVoted) {
-                alert('You have already voted!');
+            if(hasVoted) {
+                alert('You have already voted in this poll. Thank you for participating!');
                 return;
             }
-
-            // Find selected option
+            
             let selectedOption = null;
-            for (let i = 1; i <= 5; i++) {
-                if (document.getElementById('option' + i).checked) {
+            
+            // Check which option is selected
+            for(let i = 1; i <= 5; i++) {
+                if(document.getElementById('option' + i).checked) {
                     selectedOption = 'option' + i;
                     break;
                 }
             }
-
+            
             if (!selectedOption) {
-                alert('Please select a candidate before voting!');
+                alert('Please select a candidate before submitting your vote!');
                 return;
             }
-
-            // Record vote
+            
+            // Record the vote
             votes[selectedOption]++;
             
             // Save to localStorage
-            localStorage.setItem('budalangiVotes', JSON.stringify(votes));
-            localStorage.setItem('hasVoted', 'true');
-            
-            // Update UI
-            hasVoted = true;
-            updateButtonState();
+            localStorage.setItem('budalangiPoll2027', JSON.stringify(votes));
+            localStorage.setItem('budalangi2027HasVoted', 'true');
             
             // Show results
             showResults();
+            
+            // Disable voting
+            disableVoting();
+            
+            // Thank the voter
+            alert('Thank you for participating in the Budalang\'i 2027 MP preference poll! Your voice matters.');
         }
-
+        
         function showResults() {
             // Calculate total votes
-            let totalVotes = Object.values(votes).reduce((a, b) => a + b, 0);
+            const total = votes.option1 + votes.option2 + votes.option3 + votes.option4 + votes.option5;
             
-            // Update each candidate's results
-            for (let i = 1; i <= 5; i++) {
-                let percentage = totalVotes > 0 ? (votes['option' + i] / totalVotes * 100).toFixed(1) : 0;
-                let voteCount = votes['option' + i];
-                
-                // Update percentage and vote count
-                document.getElementById('result' + i).textContent = percentage + '% (' + voteCount + ' votes)';
-                
-                // Update progress bar
-                document.getElementById('bar' + i).style.width = percentage + '%';
-            }
+            // Calculate percentages
+            const percent1 = total > 0 ? Math.round((votes.option1 / total) * 100) : 0;
+            const percent2 = total > 0 ? Math.round((votes.option2 / total) * 100) : 0;
+            const percent3 = total > 0 ? Math.round((votes.option3 / total) * 100) : 0;
+            const percent4 = total > 0 ? Math.round((votes.option4 / total) * 100) : 0;
+            const percent5 = total > 0 ? Math.round((votes.option5 / total) * 100) : 0;
+            
+            // Update result display
+            document.getElementById('result1').textContent = `${percent1}% (${votes.option1} votes)`;
+            document.getElementById('result2').textContent = `${percent2}% (${votes.option2} votes)`;
+            document.getElementById('result3').textContent = `${percent3}% (${votes.option3} votes)`;
+            document.getElementById('result4').textContent = `${percent4}% (${votes.option4} votes)`;
+            document.getElementById('result5').textContent = `${percent5}% (${votes.option5} votes)`;
+            
+            document.getElementById('bar1').style.width = `${percent1}%`;
+            document.getElementById('bar2').style.width = `${percent2}%`;
+            document.getElementById('bar3').style.width = `${percent3}%`;
+            document.getElementById('bar4').style.width = `${percent4}%`;
+            document.getElementById('bar5').style.width = `${percent5}%`;
+            
+            document.getElementById('totalVotes').textContent = total;
             
             // Show results section
             document.getElementById('pollResults').style.display = 'block';
             
-            // Update total votes
-            document.getElementById('totalVotes').textContent = totalVotes;
-            
             // Update timestamp
-            document.getElementById('timestamp').textContent = 'Last updated: ' + new Date().toLocaleString();
+            document.getElementById('timestamp').textContent = `Last updated: ${new Date().toLocaleString()}`;
         }
-
-        // Service Worker Registration
-        if ('serviceWorker' in navigator) {
-            window.addEventListener('load', () => {
-                navigator.serviceWorker.register('/sw.js')
-                    .then(registration => {
-                        console.log('ServiceWorker registration successful');
-                    })
-                    .catch(err => {
-                        console.log('ServiceWorker registration failed: ', err);
-                    });
+        
+        function disableVoting() {
+            // Disable all options
+            for(let i = 1; i <= 5; i++) {
+                document.getElementById('option' + i).disabled = true;
+            }
+            
+            // Disable button
+            document.getElementById('voteButton').disabled = true;
+            document.getElementById('voteButton').innerHTML = '<i class="fas fa-check"></i> THANK YOU FOR VOTING';
+            
+            // Change option styles
+            const options = document.querySelectorAll('.poll-option');
+            options.forEach(option => {
+                option.style.cursor = 'default';
+                option.style.opacity = '0.7';
+                option.onclick = null;
             });
         }
-
-        // Offline detection
-        window.addEventListener('online', function() {
-            document.body.classList.remove('offline');
-        });
-
-        window.addEventListener('offline', function() {
-            document.body.classList.add('offline');
-        });
     </script>
 </body>
 </html>
