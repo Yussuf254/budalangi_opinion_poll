@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Budalang'i Constituency 2027 MP Preference Poll</title>
+    <!-- Add Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
     <style>
         :root {
             --primary-color: #006837; /* Kenya green */
@@ -181,7 +184,7 @@
         
         .poll-results {
             margin-top: 30px;
-            display: none;
+            display: block; /* Always visible */
             background-color: #F9F9F9;
             padding: 25px;
             border-radius: 8px;
@@ -324,9 +327,9 @@
                     <div class="party-info">
                         <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Orange_Democratic_Movement_-_Logo.svg/1200px-Orange_Democratic_Movement_-_Logo.svg.png" class="party-logo" alt="ODM">
                         <div>
-                            <div class="candidate-name">Hon. Raphael Wanjala</div>
+                            <div class="candidate-name">Hon. Raphael Bitta Wanjala</div>
                             <div class="party-name">Orange Democratic Movement (ODM)</div>
-                            <div class="candidate-title">Current MP • Development Focus</div>
+                            <div class="candidate-title">Current MP</div>
                         </div>
                     </div>
                 </div>
@@ -336,9 +339,9 @@
                     <div class="party-info">
                         <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/United_Democratic_Alliance_Logo.svg/1200px-United_Democratic_Alliance_Logo.svg.png" class="party-logo" alt="UDA">
                         <div>
-                            <div class="candidate-name">Dr. Sarah Wekesa</div>
+                            <div class="candidate-name">Hon. James Magio Mabere</div>
                             <div class="party-name">United Democratic Alliance (UDA)</div>
-                            <div class="candidate-title">Business Leader • Education Advocate</div>
+                            <div class="candidate-title">Politician</div>
                         </div>
                     </div>
                 </div>
@@ -348,9 +351,9 @@
                     <div class="party-info">
                         <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Wiper_Democratic_Movement_-_Kenya_logo.svg/1200px-Wiper_Democratic_Movement_-_Kenya_logo.svg.png" class="party-logo" alt="Wiper">
                         <div>
-                            <div class="candidate-name">Prof. James Okoth</div>
+                            <div class="candidate-name">Hon. Casper Ajuma</div>
                             <div class="party-name">Wiper Democratic Movement</div>
-                            <div class="candidate-title">University Professor • Policy Expert</div>
+                            <div class="candidate-title">Politician</div>
                         </div>
                     </div>
                 </div>
@@ -360,9 +363,9 @@
                     <div class="party-info">
                         <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/Amani_National_Congress_logo.svg/1200px-Amani_National_Congress_logo.svg.png" class="party-logo" alt="ANC">
                         <div>
-                            <div class="candidate-name">Mr. David Musungu</div>
+                            <div class="candidate-name">Hon. Sammy Ogama Imbako</div>
                             <div class="party-name">Amani National Congress (ANC)</div>
-                            <div class="candidate-title">Youth Leader • Anti-Corruption</div>
+                            <div class="candidate-title">Politician</div>
                         </div>
                     </div>
                 </div>
@@ -372,9 +375,9 @@
                     <div class="party-info">
                         <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Independent_politician.svg/1200px-Independent_politician.svg.png" class="party-logo" alt="Independent">
                         <div>
-                            <div class="candidate-name">Ms. Grace Atieno</div>
+                            <div class="candidate-name">Hon. Peter Bwire Osogo</div>
                             <div class="party-name">Independent Candidate</div>
-                            <div class="candidate-title">Community Activist • Women's Rights</div>
+                            <div class="candidate-title">Politician</div>
                         </div>
                     </div>
                 </div>
@@ -393,7 +396,7 @@
                     <div class="result-label">
                         <span class="result-name">
                             <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Orange_Democratic_Movement_-_Logo.svg/1200px-Orange_Democratic_Movement_-_Logo.svg.png" style="width:20px;height:20px;border-radius:50%;margin-right:8px;" alt="ODM">
-                            Hon. Raphael Wanjala
+                            Hon. Raphael Bitta Wanjala
                         </span>
                         <span class="result-value" id="result1">0% (0 votes)</span>
                     </div>
@@ -406,7 +409,7 @@
                     <div class="result-label">
                         <span class="result-name">
                             <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/United_Democratic_Alliance_Logo.svg/1200px-United_Democratic_Alliance_Logo.svg.png" style="width:20px;height:20px;border-radius:50%;margin-right:8px;" alt="UDA">
-                            Dr. Sarah Wekesa
+                            Hon. James Magio Mabere
                         </span>
                         <span class="result-value" id="result2">0% (0 votes)</span>
                     </div>
@@ -419,7 +422,7 @@
                     <div class="result-label">
                         <span class="result-name">
                             <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Wiper_Democratic_Movement_-_Kenya_logo.svg/1200px-Wiper_Democratic_Movement_-_Kenya_logo.svg.png" style="width:20px;height:20px;border-radius:50%;margin-right:8px;" alt="Wiper">
-                            Prof. James Okoth
+                            Hon. Casper Ajuma
                         </span>
                         <span class="result-value" id="result3">0% (0 votes)</span>
                     </div>
@@ -432,7 +435,7 @@
                     <div class="result-label">
                         <span class="result-name">
                             <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/Amani_National_Congress_logo.svg/1200px-Amani_National_Congress_logo.svg.png" style="width:20px;height:20px;border-radius:50%;margin-right:8px;" alt="ANC">
-                            Mr. David Musungu
+                            Hon. Sammy Ogama Imbako
                         </span>
                         <span class="result-value" id="result4">0% (0 votes)</span>
                     </div>
@@ -445,7 +448,7 @@
                     <div class="result-label">
                         <span class="result-name">
                             <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Independent_politician.svg/1200px-Independent_politician.svg.png" style="width:20px;height:20px;border-radius:50%;margin-right:8px;" alt="IND">
-                            Ms. Grace Atieno
+                            Hon. Peter Bwire Osogo
                         </span>
                         <span class="result-value" id="result5">0% (0 votes)</span>
                     </div>
@@ -461,7 +464,6 @@
             
             <div class="disclaimer">
                 <p><strong>Disclaimer:</strong> This is an unofficial, non-scientific poll for informational purposes only. Results do not represent actual voting intentions and should not be used to predict election outcomes. This poll is not affiliated with any political party or the Independent Electoral and Boundaries Commission (IEBC).</p>
-                <p>Data is stored locally in your browser and will reset if you clear your cache. Each device can only vote once.</p>
             </div>
             
             <div class="timestamp" id="timestamp"></div>
@@ -469,125 +471,113 @@
     </div>
 
     <script>
-        // Voting data for Budalang'i candidates
-        let votes = {
-            option1: 0,  // ODM
-            option2: 0,  // UDA
-            option3: 0,  // Wiper
-            option4: 0,  // ANC
-            option5: 0   // Independent
+        // Initialize Firebase
+        // TODO: Replace this configuration with your actual Firebase configuration
+        // Get this from your Firebase Console -> Project Settings -> Your Apps -> SDK setup and configuration
+        const firebaseConfig = {
+            apiKey: "YOUR_API_KEY",
+            authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
+            databaseURL: "https://YOUR_PROJECT_ID-default-rtdb.firebaseio.com",
+            projectId: "YOUR_PROJECT_ID",
+            storageBucket: "YOUR_PROJECT_ID.appspot.com",
+            messagingSenderId: "YOUR_SENDER_ID",
+            appId: "YOUR_APP_ID"
         };
-        
-        // Check if user has already voted
-        const hasVoted = localStorage.getItem('budalangi2027HasVoted');
-        
-        // Check if there's saved data in localStorage
-        if(localStorage.getItem('budalangiPoll2027')) {
-            votes = JSON.parse(localStorage.getItem('budalangiPoll2027'));
-            showResults();
-            
-            if(hasVoted) {
-                disableVoting();
+
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        const database = firebase.database();
+        const votesRef = database.ref('votes');
+
+        // Initialize voting data
+        let votes = {
+            option1: 0,
+            option2: 0,
+            option3: 0,
+            option4: 0,
+            option5: 0
+        };
+
+        // Listen for vote changes in real-time
+        votesRef.on('value', (snapshot) => {
+            if (snapshot.exists()) {
+                votes = snapshot.val();
+                showResults();
             }
+        });
+
+        // Check if user has already voted
+        const hasVoted = localStorage.getItem('budalangi2027HasVoted') === 'true';
+        if (hasVoted) {
+            disableVoting();
         }
-        
-        // Set current timestamp
-        document.getElementById('timestamp').textContent = `Last updated: ${new Date().toLocaleString()}`;
-        
+
         function selectOption(optionNum) {
-            if(hasVoted) return;
+            if (hasVoted) return;
             
-            // Uncheck all options
-            for(let i = 1; i <= 5; i++) {
+            for (let i = 1; i <= 5; i++) {
                 document.getElementById('option' + i).checked = false;
             }
             
-            // Check the selected option
             document.getElementById('option' + optionNum).checked = true;
         }
-        
+
         function submitVote() {
-            if(hasVoted) {
+            if (hasVoted) {
                 alert('You have already voted in this poll. Thank you for participating!');
                 return;
             }
-            
+
             let selectedOption = null;
-            
-            // Check which option is selected
-            for(let i = 1; i <= 5; i++) {
-                if(document.getElementById('option' + i).checked) {
+            for (let i = 1; i <= 5; i++) {
+                if (document.getElementById('option' + i).checked) {
                     selectedOption = 'option' + i;
                     break;
                 }
             }
-            
+
             if (!selectedOption) {
                 alert('Please select a candidate before submitting your vote!');
                 return;
             }
-            
-            // Record the vote
+
+            // Update vote in Firebase
             votes[selectedOption]++;
-            
-            // Save to localStorage
-            localStorage.setItem('budalangiPoll2027', JSON.stringify(votes));
-            localStorage.setItem('budalangi2027HasVoted', 'true');
-            
-            // Show results
-            showResults();
-            
-            // Disable voting
-            disableVoting();
-            
-            // Thank the voter
-            alert('Thank you for participating in the Budalang\'i 2027 MP preference poll! Your voice matters.');
+            votesRef.set(votes).then(() => {
+                localStorage.setItem('budalangi2027HasVoted', 'true');
+                disableVoting();
+                alert('Thank you for participating in the Budalang\'i 2027 MP preference poll! Your voice matters.');
+            }).catch((error) => {
+                alert('Error submitting vote. Please try again.');
+                console.error('Error:', error);
+            });
         }
-        
+
         function showResults() {
-            // Calculate total votes
-            const total = votes.option1 + votes.option2 + votes.option3 + votes.option4 + votes.option5;
+            const total = Object.values(votes).reduce((a, b) => a + b, 0);
             
-            // Calculate percentages
-            const percent1 = total > 0 ? Math.round((votes.option1 / total) * 100) : 0;
-            const percent2 = total > 0 ? Math.round((votes.option2 / total) * 100) : 0;
-            const percent3 = total > 0 ? Math.round((votes.option3 / total) * 100) : 0;
-            const percent4 = total > 0 ? Math.round((votes.option4 / total) * 100) : 0;
-            const percent5 = total > 0 ? Math.round((votes.option5 / total) * 100) : 0;
-            
-            // Update result display
-            document.getElementById('result1').textContent = `${percent1}% (${votes.option1} votes)`;
-            document.getElementById('result2').textContent = `${percent2}% (${votes.option2} votes)`;
-            document.getElementById('result3').textContent = `${percent3}% (${votes.option3} votes)`;
-            document.getElementById('result4').textContent = `${percent4}% (${votes.option4} votes)`;
-            document.getElementById('result5').textContent = `${percent5}% (${votes.option5} votes)`;
-            
-            document.getElementById('bar1').style.width = `${percent1}%`;
-            document.getElementById('bar2').style.width = `${percent2}%`;
-            document.getElementById('bar3').style.width = `${percent3}%`;
-            document.getElementById('bar4').style.width = `${percent4}%`;
-            document.getElementById('bar5').style.width = `${percent5}%`;
+            // Update each candidate's results
+            for (let i = 1; i <= 5; i++) {
+                const percentage = total > 0 ? ((votes['option' + i] / total) * 100).toFixed(1) : 0;
+                const voteCount = votes['option' + i];
+                
+                document.getElementById('result' + i).textContent = `${percentage}% (${voteCount} votes)`;
+                document.getElementById('bar' + i).style.width = `${percentage}%`;
+            }
             
             document.getElementById('totalVotes').textContent = total;
-            
-            // Show results section
-            document.getElementById('pollResults').style.display = 'block';
-            
-            // Update timestamp
             document.getElementById('timestamp').textContent = `Last updated: ${new Date().toLocaleString()}`;
         }
-        
+
         function disableVoting() {
-            // Disable all options
-            for(let i = 1; i <= 5; i++) {
+            for (let i = 1; i <= 5; i++) {
                 document.getElementById('option' + i).disabled = true;
             }
             
-            // Disable button
-            document.getElementById('voteButton').disabled = true;
-            document.getElementById('voteButton').innerHTML = '<i class="fas fa-check"></i> THANK YOU FOR VOTING';
+            const voteButton = document.getElementById('voteButton');
+            voteButton.disabled = true;
+            voteButton.innerHTML = '<i class="fas fa-check"></i> THANK YOU FOR VOTING';
             
-            // Change option styles
             const options = document.querySelectorAll('.poll-option');
             options.forEach(option => {
                 option.style.cursor = 'default';

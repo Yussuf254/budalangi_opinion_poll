@@ -1,0 +1,14 @@
+{
+  "rules": {
+    ".read": true,
+    "votes": {
+      ".write": true,
+      ".validate": "newData.hasChildren(['option1', 'option2', 'option3', 'option4', 'option5']) &&
+                   newData.child('option1').isNumber() &&
+                   newData.child('option2').isNumber() &&
+                   newData.child('option3').isNumber() &&
+                   newData.child('option4').isNumber() &&
+                   newData.child('option5').isNumber()"
+    }
+  }
+} 
